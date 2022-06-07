@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/post/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/groups/style.css') }}">
+</head>
+<body>
+    <div id="new_post"></div>
+    <hr><br>
+    <div id="new_post_preview"></div>
+
+    <div><button type="submit"><a href="{{ url_for('webui.groups') }}">Grupos</a></button></div>
+    
+    <div id="posts"></div>
+
+
+    {% include 'urls.html' %}
+
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/post/comm.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/post/funcs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/post/ui.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadPosts, false)
+    </script>
+
+
+</body>
+</html>

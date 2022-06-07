@@ -1,0 +1,35 @@
+
+
+        <script>
+            const currentGroup = Object()
+            ' {% if group %} '
+            currentGroup.id = "{{ group.id }}"
+            ' {% endif %} '
+            const JWT = '{{ JWT }}'
+        </script>
+    <script>
+
+        const URL_cdn_post      = "{{ url_for( 'cdn.post',                      _external=True ) }}"
+        const URL_post_post     = "{{ url_for( 'api.post_post',                 _external=True ) }}"
+        const URL_group_post    = "{{ url_for( 'api.group_post',                _external=True ) }}"
+        const URL_friends_post  = "{{ url_for( 'api.friends_post',              _external=True ) }}"
+        const URL_comments_post = "{{ url_for( 'api.comments_post',             _external=True ) }}"
+        const URL_post          = "{{ url_for( 'api.post', post=''       ,      _external=True ) }}"
+        const URL_group         = "{{ url_for( 'api.group', group=''     ,      _external=True ) }}"
+        const URL_users         = "{{ url_for( 'api.users', user=''      ,      _external=True ) }}"
+        const URL_friends       = "{{ url_for( 'api.friends', user=''    ,      _external=True ) }}"
+        const URL_cdn_get       = "{{ url_for( 'cdn.get', cdn='', filename='',  _external=True ) }}"
+        const URL_comments      = "{{ url_for( 'api.comments', comm=''    ,     _external=True ) }}"
+        const URL_grouphook     = "{{ url_for( 'api.grouphook', group=''  ,     _external=True ) }}"
+        const URL_reacts_post   = "{{ url_for( 'api.reacts_post', owner='',     _external=True ) }}"
+        const URL_webui_group   = "{{ url_for( 'webui.group', group=''    ,     _external=True ) }}"
+        const URL_cdn_get_all   = "{{ url_for('cdn.get_all'       ,             _external=True ) }}"
+        const URL_post_get_all  = "{{ url_for( 'api.post_get_all',              _external=True ) }}"
+        const URL_group_get_all = "{{ url_for( 'api.group_get_all',             _external=True ) }}"
+        const URL_post_get_list = "{{ url_for( 'api.post_get_list',             _external=True ) }}"
+        const URL_login         = "{{ url_for( 'auth.login'   ,                 _external=True ) }}"
+        const URL_register      = "{{ url_for( 'auth.register',                 _external=True ) }}"
+        const URL_webui_index   = "{{ url_for( 'webui.index',                   _external=True ) }}"
+        const URL_webui_groups  = "{{ url_for( 'webui.groups',                  _external=True ) }}"
+        
+    </script>

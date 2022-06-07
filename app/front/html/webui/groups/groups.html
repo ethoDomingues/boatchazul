@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPOS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/post/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/groups/style.css') }}">
+</head>
+<body>
+    
+    <div id="new_group">
+        <button id="btn_new_group">Criar Grupo</button>
+        <div id="new_group_form"></div>
+    </div>
+
+    <div id="recommended">
+        <span>Grupos Recomentados</span>
+        <div id="recommended_wrapper"></div>
+    </div>
+    <div id="my_groups">
+        <span>Meus Grupos</span>
+        <div id="my_groups_wrapper"></div>
+    </div>
+
+    
+    {% include 'urls.html' %}
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils/utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/groups/funcs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/groups/ui.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", load, false)
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+</head>
+<body>
+    <form action="{{url_for('auth.register')}}" id="form"><br>
+        <input v-model="name"   type="text"     name="name"    placeholder="Nome"><br>
+        <input v-model="username" type="text"     name="username"  placeholder="Usuário"><br>
+        <input v-model="email"    type="email"    name="email"     placeholder="Email"><br>
+        <input v-model="birth"    type="date" name="birth"><br>
+        <input v-model="password" type="password" name="password"  placeholder="Senha"><br>
+        <input v-model="keep"     type="checkbox" name="keep" id="keep">
+        <label for="keep">Mantenha-me conectado</label><br>
+        {%if next %}<input v-model="next" type="hidden" name="next">{% endif %}
+        <p><a href="{{ url_for('auth.login', next=next) }}">Ja é cadastrado?</a></p>
+        <button @click.prevent="register($event)">Cadastrar</button>
+    </form>
+
+
+    {% include 'urls.html' %}
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="{{ url_for('static', filename='js/auth/auth.js') }}"></script>
+    <script>
+
+        form = document.getElementById("form")
+
+        Vue.createApp({
+            data() {
+                return {
+                    name: "",
+                    email: "",
+                    birth: "",
+                    password: "",
+                    username: "",
+                    keep: "",
+                    next: "{{ next}}",
+                }
+            },
+            methods: {
+                register(event) {
+                    if ( this.email && this.birth && this.name  && this.password && this.username) {
+                        let h = new Headers()
+                        h.append("Authorization", "Basic " +btoa(`${this.username}:${this.password}`))
+                        h.append('Content-Type', 'application/json')
+
+
+                        fetch(form.action,{
+                            method: "post",
+                            headers: h,
+                            body: JSON.stringify({
+                                next: this.next,
+                                keep: this.keep,
+                                name: this.name,
+                                birth: this.birth,
+                                email: this.email,
+                            })
+                        })
+                        .then( (response) => {
+                            setAccessToken(response.headers.authorization)
+                            console.log(response.headers.authorization)
+                            // window.location.href = response.data.locate
+                        })
+                        .catch( (error) => { console.log(error) })
+                    }
+                }
+            },
+            compilerOptions:{
+                delimiter: ["${","}$"]
+            }
+        }).mount("#form")
+    </script>
+</body>
+</html>

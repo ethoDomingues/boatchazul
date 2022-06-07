@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#new_group {
+    margin-bottom: 50px;
+}
+#new_group_form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+.recommended {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid gray;
+}

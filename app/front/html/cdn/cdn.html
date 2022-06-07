@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN</title>
+</head>
+<body>
+    <div class="images">
+        <img id="img" src="" alt="" width="100px" height="100px">
+    </div>
+    <form action="{{ url_for('cdn.post') }}" accept="images/*" id="form" enctype="multipart/form-data">
+        <input type="file" name="files" id="files" @change="load($event)">
+        <button @click.prevent="saveFile($event)">Salvar</button>
+    </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        form = document.getElementById("form")
+        Vue.createApp({
+            data() { return {} },
+            methods: {
+                saveFile(event) {
+                    axios({
+                        url: form.action,
+                        method:"post",
+                        data: new FormData(form),
+                    })
+                    .then( (response) => {console.log(response) })
+                    .catch( (error) => {console.log(error) })
+                },
+                load(event) {
+                    img = document.getElementById("img")
+                    f = document.getElementById("files")
+                    img.src = URL.createObjectURL(f.files[0])
+                }
+            },
+            compilerOptions: ["${","}$"]
+        }).mount("#form")
+    </script>
+</body>
+</html>
