@@ -9,7 +9,7 @@
             "cfg": {
                 "SQLALCHEMY_TRACK_MODIFICATIONS": false,
                 "SECRET_KEY": ".::[ TOP SECRET ]::.",
-                "SERVER_NAME": "boatchazul.com",
+                "SERVER_NAME": "social.localhost:8080",
                 "SESSION_COOKIE_HTTPONLY": false
             }
         },

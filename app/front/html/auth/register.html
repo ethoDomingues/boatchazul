@@ -7,7 +7,7 @@
     <title>Auth</title>
 </head>
 <body>
-    <form action="{{url_for('auth.register')}}" id="form"><br>
+    <form id="form"><br>
         <input v-model="name"   type="text"     name="name"    placeholder="Nome"><br>
         <input v-model="username" type="text"     name="username"  placeholder="Usuário"><br>
         <input v-model="email"    type="email"    name="email"     placeholder="Email"><br>
@@ -33,13 +33,13 @@
         Vue.createApp({
             data() {
                 return {
+                    keep: "",
                     name: "",
+                    next: "{{ next}}",
                     email: "",
                     birth: "",
                     password: "",
                     username: "",
-                    keep: "",
-                    next: "{{ next}}",
                 }
             },
             methods: {
@@ -50,7 +50,7 @@
                         h.append('Content-Type', 'application/json')
 
 
-                        fetch(form.action,{
+                        fetch( URL_auth_register, {
                             method: "post",
                             headers: h,
                             body: JSON.stringify({
@@ -61,18 +61,13 @@
                                 email: this.email,
                             })
                         })
-                        .then( (response) => {
-                            setAccessToken(response.headers.authorization)
-                            console.log(response.headers.authorization)
-                            // window.location.href = response.data.locate
-                        })
+                        .then( response => response.json() )
+                        .then( data => window.location.href = data.location )
                         .catch( (error) => { console.log(error) })
                     }
                 }
             },
-            compilerOptions:{
-                delimiter: ["${","}$"]
-            }
+            compilerOptions:{ delimiter: ["${","}$"] }
         }).mount("#form")
     </script>
 </body>
